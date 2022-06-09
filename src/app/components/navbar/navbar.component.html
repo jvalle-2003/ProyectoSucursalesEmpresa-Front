@@ -1,0 +1,71 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Sucursales De Empresas</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <div class="navbar-">
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="/home">
+                        <i class="fa fa-home"></i>
+                        Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                    <a *ngIf="token && identity.role == 'ADMIN'"class="nav-link" routerLink="/enterprises">
+                        <i class="fa fa-building"></i>
+                        Enterprises
+                        <span class="sr-only">(current)</span>
+                    </a>
+                    <a *ngIf="token && identity.role == 'EMPRESA'" class="nav-link" routerLink="/products">
+                        <i class="fa fa-product-hunt"></i>
+                        Products
+                        <span class="sr-only">(current)</span>
+                    </a>
+                    <a *ngIf="token && identity.role == 'EMPRESA'"class="nav-link" routerLink="/sucursal">
+                        <i class="fa fa-building"></i>
+                                                Branchs
+                        <span class="sr-only">(current)</span>
+                    </a>
+                    <a *ngIf="!token"   class="nav-link" routerLink="/login">
+                        <i class="fa fa-user-circle-o"></i>
+                        Login
+                        <span class="sr-only">(current)</span>
+                    </a>
+                    <a *ngIf="!token"   class="nav-link" routerLink="/register">
+                        <i class="fa fa-user-plus"></i>
+                        Register
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+            </div>
+            <li *ngIf="token" class="nav-item">
+                <a class="nav-link disabled" >
+                    <i class="fa fa-user-o">
+                    </i>
+                    {{name}}
+                </a>
+            </li>
+            <li *ngIf="token" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-plus-square-o">
+                    </i>
+                    Más acciones
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                            <a (click)="logOut()" class="dropdown-item" routerLink="/login">Log Out</a>
+                            <a  class="dropdown-item" routerLink="/enterprise">PROFILE</a>
+                    </li>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,195 @@
+<app-navbar></app-navbar>
+<hr>
+<div class="text-center">
+  <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#sucursalModal"><svg
+      style="margin-right: 20;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+      class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+      <path
+        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+    </svg>Add Branch</button>
+</div>
+<hr>
+<div class="text-center m-5">
+  <table class=" table table-warning table-bordered bg-warning">
+    <thead>
+      <tr>
+        <th class="bg-warning " scope="col">No.</th>
+        <th scope="  col">Name</th>
+        <th scope="  col">Direction</th>
+        <th scope="  col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sucursal of sucursales; let i = index">
+        <th scope="row">{{ i+1 }}</th>
+        <td>{{ sucursal.name}}</td>
+        <td>{{ sucursal.direction }}</td>
+        <td>
+          <svg style="margin-right: 20;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+            <path
+              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+          </svg>
+          <svg (click)="getSucursal(sucursal._id)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasUpdate"
+            aria-controls="offcanvasUpdate" style="margin-right: 20;" xmlns="http://www.w3.org/2000/svg" width="16"
+            height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+            <path
+              d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+            <path fill-rule="evenodd"
+              d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+          </svg>
+          <svg (click)="deleteSucursal(sucursal._id)" style="margin-right: 20;" xmlns="http://www.w3.org/2000/svg"
+            width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+            <path
+              d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+          </svg>
+          <svg (click)="getProductsBranch(sucursal._id)" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"
+            viewBox="0 0 16 16">
+            <path
+              d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+          </svg>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--Modal de venta-->
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+  tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <form (ngSubmit)="saleOfProduct(saleProductForm)" #saleProductForm="ngForm">
+          <h5 class="modal-title" id="exampleModalToggleLabel2">Sell Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="input-group flex-nowrap">
+          <h5 class="modal-title text-center">Quantity</h5>
+          <input [(ngModel)]="quantity" name="quantity" type="number" class="form-control" placeholder="quantity">
+        </div> <br>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary" data-bs-target="#" data-bs-toggle="modal" data-bs-dismiss="modal"
+            style="margin-bottom: 2%;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shop"
+              viewBox="0 0 16 16">
+              <path
+                d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z" />
+            </svg>
+            Sell
+          </button>
+        </div>
+        </form>
+       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal view -->
+<div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Productos en la Sucursal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">N°</th>
+              <th scope="col">Product</th>
+              <th scope="col">Stock</th>
+              <th scope="col">Sales</th>
+              <th scope="col">New Sales</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let productbranch of productsBranch; let i = index">
+              <td scope="row">{{ i+1 }}</td>
+              <td>{{productbranch.product.name}}</td>
+              <td>{{productbranch.stock}}</td>
+              <td>{{productbranch.sales}}</td>
+              <td>
+                <button (click)="getProductBranch(productbranch._id)" class="btn btn-primary"
+                  data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal"
+                  style="margin-bottom: 2%;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shop"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z" />
+                  </svg>
+                  Sale
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-center mb-2">
+        <button type="button" style="margin-right: 2%;" class="btn btn-secondary"
+          data-bs-dismiss="modal">Volver</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!---Modal Add-->
+
+<div class="modal fade" id="sucursalModal" tabindex="-1" aria-labelledby="sucursalModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="sucursalModalLabel">Add Branch</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form (ngSubmit)="saveSucursal(addForm)" #addForm="ngForm">
+          <div class="mb-3">
+            <label for="inputName" class="form-label">Name</label>
+            <input [(ngModel)]="sucursal.name" name="name" type="text" class="form-control" id="inputName">
+          </div>
+          <div class="mb-3">
+            <label for="InputDirection" class="form-label">Direction</label>
+            <input [(ngModel)]="sucursal.direction" name="direccion" type="text" class="form-control"
+              id="inputDirection">
+          </div>
+          <div class="text-center">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary m-2" data-bs-dismiss="modal">Save changes</button>
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--OFF CANVAS DE UPDATE BRANCH-->
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasUpdate" aria-labelledby="offcanvasUpdateLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasUpdateLabel">Update Branch</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+
+    <form (ngSubmit)="updateSucursal()" *ngIf="sucursalGetId">
+      <div class="mb-3">
+        <label for="inputNameUpdate" class="form-label">Name</label>
+        <input [(ngModel)]="sucursalGetId.name" name="name" type="text" class="form-control" id="inputNameUpdate">
+      </div>
+      <div class="mb-3">
+        <label for="UnputDirectionUpdate" class="form-label">Direction</label>
+        <input [(ngModel)]="sucursalGetId.direction" name="direction" type="text" class="form-control"
+          id="inputDirectionUpdate">
+      </div>
+      <div class="text-center">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary m-2" data-bs-dismiss="modal">Save changes</button>
+      </div>
+    </form>
+  </div>
+</div>
