@@ -5,9 +5,27 @@
     <div class="col-md-8">
       <div class="search">
         <i class="fa fa-search"></i>
-        <input [(ngModel)]="search " type="text" class="form-control" placeholder="Search for products">
+        <input [(ngModel)]="provider" name="provider" type="text" class="form-control" placeholder="Search for products">
         <button class="btn btn-primary">Search</button>
+        <label class="custom-radio-checkbox m-3">
+          <input class="custom-radio-checkbox__input" type="radio" name="genero" value="stockAsc" checked  (click)="getProductsByName()">
+          <span class="custom-radio-checkbox__text">Name</span>
+        </label>
         
+         <label class="custom-radio-checkbox m-3">
+          <input class="custom-radio-checkbox__input" type="radio" name="genero" value="stockAsc" checked  (click)="getProductsByProvider()">
+          <span class="custom-radio-checkbox__text">Provider</span>
+        </label>
+        
+          <label class="custom-radio-checkbox m-3">
+              <input class="custom-radio-checkbox__input" type="radio" name="genero" value="stockAsc" checked  (click)="getProductsByStockAsc()">
+              <span class="custom-radio-checkbox__text">Stock Asc</span>
+          </label>
+        
+          <label class="custom-radio-checkbox m-3">
+              <input class="custom-radio-checkbox__input" type="radio" name="genero" value="stockDesc" (click)="getProductsByStockDesc()" >
+              <span class="custom-radio-checkbox__text m-2">Stock Desc</span>
+          </label>
       </div>   
     </div>
   </div>
@@ -17,25 +35,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
- <label class="custom-radio-checkbox m-3">
-  <input class="custom-radio-checkbox__input" type="radio" name="genero" value="stockAsc" checked  (click)="getProductsByName()">
-  <span class="custom-radio-checkbox__text">Name</span>
-</label>
-
- <label class="custom-radio-checkbox m-3">
-  <input class="custom-radio-checkbox__input" type="radio" name="genero" value="stockAsc" checked  (click)="getProductsByProvider()">
-  <span class="custom-radio-checkbox__text">Provider</span>
-</label>
-
-  <label class="custom-radio-checkbox m-3">
-      <input class="custom-radio-checkbox__input" type="radio" name="genero" value="stockAsc" checked  (click)="getProductsByStockAsc()">
-      <span class="custom-radio-checkbox__text">Stock Asc</span>
-  </label>
-
-  <label class="custom-radio-checkbox m-3">
-      <input class="custom-radio-checkbox__input" type="radio" name="genero" value="stockDesc" (click)="getProductsByStockDesc()" >
-      <span class="custom-radio-checkbox__text m-2">Stock Desc</span>
-  </label>
 
 <div class="text-center m-3">
   <button type="button" class="btn btn-outline-success m-4" 
@@ -75,23 +74,23 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo Producto</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add new product</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form  #addProducForm="ngForm">
           <div class="mb-3">
             <div>
-              <label for="exampleInputEmail1" class="form-label">Nombre</label>
+              <label for="exampleInputEmail1" class="form-label">Name</label>
               <input [(ngModel)]="product.name" name= "name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
             <div>
-              <label for="exampleInputEmail1" class="form-label">Proveedor</label>
+              <label for="exampleInputEmail1" class="form-label">Provider</label>
               <input [(ngModel)]="product.provider " name= "provider" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
             <div>
               <label for="exampleInputEmail1" class="form-label">Stock</label>
-              <input [(ngModel)]="product.stock " name= "stock" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input [(ngModel)]="product.stock " name= "stock" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
             
           </div>
@@ -111,7 +110,7 @@
 <!-- off canvas update -->
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasExampleLabel">UpdateProduct</h5>
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Update Product</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
@@ -123,7 +122,7 @@
               </div>
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Provider</label>
-                <input [(ngModel)]="productId.provider" name="stock" type="text" class="form-control" id="exampleInputPassword1">
+                <input [(ngModel)]="productId.provider" name="provider" type="text" class="form-control" id="exampleInputPassword1">
               </div>
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Stock</label>
@@ -158,7 +157,7 @@
           </div>
           <div class="mb-3">
             <label class="form-label">Branch</label>
-            <select [(ngModel)]="productBranch.enterpriceBranch" name="enterpriceBranch" class="form-select"
+            <select [(ngModel)]="productBranch.enterpriseBranch" name="enterpriseBranch" class="form-select"
               aria-label="Default select example">
               <option disabled value="" selected>Select branch</option>
               <option *ngFor="let sucursal of sucursales" value="{{ sucursal._id }}">{{ sucursal.name }}</option>
@@ -168,7 +167,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" (click)="addProductBranch(addProductBranchForm)" class="btn btn-primary">Save</button>
+        <button type="button" (click)="addProductBranch(addProductBranchForm)" data-bs-dismiss="modal" class="btn btn-primary">Save</button>
       </div>
     </div>
   </div>

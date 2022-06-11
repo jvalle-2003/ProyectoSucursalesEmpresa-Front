@@ -44,11 +44,11 @@ export class ProductRestService {
     return this.http.get(environment.baseUrl + 'product/getProductsByStockDesc', {headers: this.httpOptions});
   }
 
-  getProductsByName(){
-    return this.http.get(environment.baseUrl + 'product/getProductsByName', {headers: this.httpOptions});
+  getProductsByName(params: {}){
+    return this.http.post(environment.baseUrl + 'product/getProductsByName', params, {headers: this.httpOptions});
   }
 
-  getProductsByProvider(){
-    return this.http.get(environment.baseUrl + 'product/getProductsByProvider', {headers: this.httpOptions});
+  getProductsByProvider(params: {}){
+    return this.http.post(environment.baseUrl + 'product/getProductsByProvider', params, {headers: this.httpOptions});
   } 
 }

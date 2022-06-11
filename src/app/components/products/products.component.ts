@@ -20,6 +20,7 @@ export class ProductsComponent implements OnInit {
   sucursales: any;
   productId:any;
   search:any;
+  provider: any;
   sucursalGetId:any;
   idBranch: any;
   idProduct: any; 
@@ -123,15 +124,24 @@ export class ProductsComponent implements OnInit {
     })
   }
 
+  name: any;
+
   getProductsByName(){
-    this.productRest.getProductsByName().subscribe({
+    let params = {
+      name: this.name   
+    }
+    this.productRest.getProductsByName(params).subscribe({
       next: (res:any)=>{  this.products = res.products, console.log(this.products)},
       error: (err)=> console.log(err)
     })
   }
 
+   
   getProductsByProvider (){
-    this.productRest.getProductsByProvider().subscribe({
+    let params = {
+      provider: this.provider   
+    }
+    this.productRest.getProductsByProvider(params).subscribe({
       next: (res:any)=>{  this.products = res.products, console.log(this.products)},
       error: (err)=> console.log(err)
     })
@@ -159,8 +169,13 @@ export class ProductsComponent implements OnInit {
   addProductBranch(addProductBranchForm: any){
     this.productSucursalRest.addProductBranch(this.productBranch).subscribe({
       next: (res: any)=>{
-        console.log(res);
-        alert(res.message);
+        Swal.fire({
+          title: res.message,
+          icon: 'success',
+          position: 'center',
+          showConfirmButton: false,
+          timer: 2000
+        });
         this.getSucursales();
         this.getProducts();
         addProductBranchForm.reset();

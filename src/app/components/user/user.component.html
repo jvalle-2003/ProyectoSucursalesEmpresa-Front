@@ -17,17 +17,17 @@
       </div>
     </div>
   </div>
+</div>
   <!-- Off canvas update-->
 
-  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasGetUser" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasGetUser" aria-labelledby="offcanvasLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasGetUser">Update Profile</h5>
+      <h5 class="offcanvas-title" id="offcanvasLabel">Update profile</h5>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    
     <div class="offcanvas-body">
       <form (ngSubmit)="updateEnterprise()" *ngIf="userGetId">
-        <div class="mb-2">
+        <div class="mb-3">
           <label class="form-label">Name</label>
           <input [(ngModel)]="userGetId.name" name="name" type="text" class="form-control" id="name">
         </div>
@@ -47,10 +47,8 @@
           <label class="form-label">Teléfono</label>
           <input [(ngModel)]="userGetId.phone" name="phone" type="text" class="form-control">
         </div>
-        <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="offcanvas">Cancel</button>
-          <button type="submit" class="btn btn-primary" data-bs-dismiss="offcanvas">Update</button>
-        </div>
+          <button type="submit" class="btn btn-primary  m-1" data-bs-dismiss="offcanvas">Update</button> 
       </form>
     </div>
   </div>

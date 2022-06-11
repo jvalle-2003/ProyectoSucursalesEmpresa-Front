@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SearchPipe implements PipeTransform {
 
   transform(products: any, search:any) {
-    if(search === undefined){
+    if(search === undefined){ 
       return products;
     }else{
       return products.filter((products:any)=>{

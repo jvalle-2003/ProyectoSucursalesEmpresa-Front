@@ -3,6 +3,6 @@ export class ProductBranchModel{
         public id: string,
         public product: string,
         public stock: number,
-        public enterpriceBranch: string,
+        public enterpriseBranch: string,
     ) { }
 }
