@@ -32,4 +32,8 @@ export class ProductSucursalRestService {
     return this.http.post(environment.baseUrl + 'productBranch/saleOfProduct', params, {headers: this.httpOptions}); 
   }
 
+  getProductsBranchBySales(enterpriseBranchId: string){
+    return this.http.get(environment.baseUrl + 'productBranch/getProductsBranchBySales/' + enterpriseBranchId, {headers: this.httpOptions})
+  }
+
 }

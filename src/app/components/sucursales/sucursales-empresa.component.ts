@@ -5,6 +5,8 @@ import { ProductBranchModel } from 'src/app/models/productBranch.model';
 import { ProductModel } from 'src/app/models/product.model';
 import { ProductSucursalRestService } from 'src/app/services/productSucursalRest/product-sucursal-rest.service';
 import { sucursalRestService } from 'src/app/services/sucursalRest/sucursal-rest.service';
+import { Chart } from 'node_modules/chart.js';
+
 import Swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
 
@@ -171,6 +173,45 @@ export class SucursalesEmpresaComponent implements OnInit {
     });
   }
   
+  getProductsBranchBySales(enterpriseBranchId: string) {
+    this.productSucursalRest.getProductsBranchBySales(enterpriseBranchId).subscribe({
+      next: (res: any) => {
+        this.BranchGetId = enterpriseBranchId
+        console.log(res)
+        this.productsBranch = res.productsBranch;
+      },
+      error: (err: any) => {
+        Swal.fire({
+          icon: 'warning',
+          title: err.error.message || err.error,
+        });
+      },
+    });
+  }
+
 }
 
+const labels = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+];
 
+const data = {
+  labels: labels,
+  datasets: [{
+    label: 'My First dataset',
+    backgroundColor: 'rgb(255, 99, 132)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: [0, 10, 5, 2, 20, 30, 45],
+  }]
+};
+
+const config = {
+  type: 'line',
+  data: data,
+  options: {}
+};

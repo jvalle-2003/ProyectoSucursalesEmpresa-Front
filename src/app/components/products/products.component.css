@@ -29,7 +29,7 @@
        .search input:focus{
 
         box-shadow: none;
-        border: 2px solid blue;
+        border: 2px solid #0774d9;
 
 
        }
@@ -49,7 +49,7 @@
         right: 5px;
         height: 50px;
         width: 110px;
-        background: blue;
+        background: #0774d9;
 
        }
 

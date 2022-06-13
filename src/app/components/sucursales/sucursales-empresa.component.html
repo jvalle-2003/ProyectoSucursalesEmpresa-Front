@@ -25,10 +25,8 @@
         <td>{{ sucursal.name}}</td>
         <td>{{ sucursal.direction }}</td>
         <td>
-          <svg style="margin-right: 20;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-            class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-            <path
-              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+          <svg (click)="getProductsBranchBySales(sucursal._id)"  xmlns="http://www.w3.org/2000/svg"data-bs-toggle="modal" data-bs-target="#staticChart" style="margin-right: 20;" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-line" viewBox="0 0 16 16">
+            <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"/>
           </svg>
           <svg (click)="getSucursal(sucursal._id)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasUpdate"
             aria-controls="offcanvasUpdate" style="margin-right: 20;" xmlns="http://www.w3.org/2000/svg" width="16"
@@ -54,6 +52,46 @@
       </tr>
     </tbody>
   </table>
+</div>
+
+
+<!-- Modal de grafica -->
+<div class="modal fade" id="staticChart" tabindex="-1" aria-labelledby="modalChart" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalChart">Chart of best-selling products</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="margin-top: -1rem;">
+        <div class="table-responsive-xxl px-2">
+            <div>
+                <canvas id="myChart" width="200" height="200"></canvas>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Ventas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let productBranch of productsBranch">
+                    <th scope="row" *ngIf="productBranch.product !== null">{{ productBranch.product.name }}
+                    </th>
+                    <td *ngIf="productBranch.product !== null">{{ productBranch.stock }}</td>
+                    <td *ngIf="productBranch.product !== null">{{ productBranch.sales }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!--Modal de venta-->
