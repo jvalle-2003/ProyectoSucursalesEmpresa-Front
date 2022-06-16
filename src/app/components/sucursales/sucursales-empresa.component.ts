@@ -201,20 +201,16 @@ export class SucursalesEmpresaComponent implements OnInit {
   tableProducts: boolean = false;
   graphicProducts: boolean = false;
 
-  graficBar() 
-  {
-    this.productSucursalRest.getProductsBranchBySales(this.sucursalGetId).subscribe({
-      next: (res: any) => 
-      {
+  graficBar(enterpriseBranchId: string){
+    this.productSucursalRest.getProductsBranchBySales( enterpriseBranchId).subscribe({
+      next: (res: any) => {
         this.productGraphic = res.productsBranch;
         const setDataSets = []
-
         for (var key=0; key < this.productGraphic.length; key ++)
         {
           var data =  this.productGraphic[key];
-          setDataSets.push({label:data.enterpriseProduct.name, data:[data.sales]});
+          setDataSets.push({label:data.product.name, data:[data.sales]});
         }
-
         this.canvas = document.getElementById('myChart');
         this.ctx = this.canvas.getContext('2d');
         this.chart = new Chart(this.ctx,
